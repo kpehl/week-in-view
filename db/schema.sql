@@ -1,0 +1,2 @@
+DROP DATABASE IF EXISTS process.env.DB_NAME,;
+CREATE DATABASE process.env.DB_NAME,;
