@@ -1,2 +1,2 @@
-DROP DATABASE IF EXISTS process.env.DB_NAME,;
-CREATE DATABASE process.env.DB_NAME,;
+DROP DATABASE IF EXISTS week_in_view_draft_db;
+CREATE DATABASE week_in_view_draft_db;

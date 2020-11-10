@@ -30,7 +30,7 @@ Event.init(
             type: DataTypes.STRING,
             allowNull: false,
             validate: {
-                nonEmpty: true
+                notEmpty: true
             }
         },
         text: {
@@ -64,6 +64,11 @@ Event.init(
             type: DataTypes.INTEGER,
             allowNull: false,
             len: [4]
+        },
+        duration: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            len: [1,2]
         }
     },
     {
@@ -71,7 +76,7 @@ Event.init(
         timestamps: true,
         freezeTableName: true,
         underscored: true,
-        modelName: 'vote'
+        modelName: 'event'
     }
 )
 

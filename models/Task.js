@@ -41,7 +41,8 @@ Task.init(
         },
         status: {
             type: DataTypes.BOOLEAN,
-            allowNull: false
+            allowNull: false,
+            defaultValue: false
         }
     },
     {
@@ -49,7 +50,7 @@ Task.init(
         timestamps: true,
         freezeTableName: true,
         underscored: true,
-        modelName: 'vote'
+        modelName: 'task'
     }
 )
 
