@@ -1,0 +1,27 @@
+<div>
+    {{userData.username}}
+    {{#each userData.events}}
+    <h3>{{ title }}</h3>
+    <p>{{ text }}</p>
+    <p>{{hour}}:{{minute}}, {{month}}/{{day}}/{{year}}</p>
+    {{/each}}
+</div>
+<div>
+    {{#each userData.tasks}}
+    <p>{{ text }} {{ status }}</p>
+    {{/each}}
+</div>
+
+<div id='calendar'></div>
+
+<script>
+
+    document.addEventListener('DOMContentLoaded', function() {
+    var calendarEl = document.getElementById('calendar');
+    var calendar = new FullCalendar.Calendar(calendarEl, {
+        initialView: 'timeGridWeek'
+    });
+    calendar.render();
+    });
+
+</script>

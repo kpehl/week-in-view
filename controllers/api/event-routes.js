@@ -1,7 +1,7 @@
 // Dependencies
 // Express.js connection
 const router = require('express').Router();
-// User model and Post model
+// User model and Event model
 const { User, Event } = require('../../models');
 // Sequelize database connection
 const sequelize = require('../../config/connection');
