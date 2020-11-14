@@ -225,18 +225,18 @@ function hexToRGBA(hex) {
     
             //     return displayLabel;
             // },
-            timegridDisplayPrimayTime: function(time) {
-                // will be deprecated. use 'timegridDisplayPrimaryTime'
-                var meridiem = 'am';
-                var hour = time.hour;
+            // timegridDisplayPrimayTime: function(time) {
+            //     // will be deprecated. use 'timegridDisplayPrimaryTime'
+            //     var meridiem = 'am';
+            //     var hour = time.hour;
     
-                if (time.hour > 12) {
-                    meridiem = 'pm';
-                    hour = time.hour - 12;
-                }
+            //     if (time.hour > 12) {
+            //         meridiem = 'pm';
+            //         hour = time.hour - 12;
+            //     }
     
-                return hour + ' ' + meridiem;
-            },
+            //     return hour + ' ' + meridiem;
+            // },
             timegridDisplayPrimaryTime: function(time) {
                 var meridiem = 'am';
                 var hour = time.hour;
@@ -251,17 +251,17 @@ function hexToRGBA(hex) {
             timegridDisplayTime: function(time) {
                 return getPadStart(time.hour) + ':' + getPadStart(time.hour);
             },
-            timegridCurrentTime: function(timezone) {
-                var templates = [];
+            // timegridCurrentTime: function(timezone) {
+            //     var templates = [];
     
-                if (timezone.dateDifference) {
-                    templates.push('[' + timezone.dateDifferenceSign + timezone.dateDifference + ']<br>');
-                }
+            //     if (timezone.dateDifference) {
+            //         templates.push('[' + timezone.dateDifferenceSign + timezone.dateDifference + ']<br>');
+            //     }
     
-                templates.push(moment(timezone.hourmarker).format('HH:mm a'));
+            //     templates.push(moment(timezone.hourmarker).format('HH:mm a'));
     
-                return templates.join('');
-            },
+            //     return templates.join('');
+            // },
             popupIsAllDay: function() {
                 return 'All Day';
             },
@@ -445,6 +445,36 @@ function hexToRGBA(hex) {
         return html.join('');
     }
 
+    function onClickMenu(e) {
+        var target = $(e.target).closest('a[role="menuitem"]')[0];
+        var action = getDataAction(target);
+        var options = cal.getOptions();
+        var viewName = '';
+
+        console.log(target);
+        console.log(action);
+        switch (action) {
+            case 'toggle-daily':
+                viewName = 'day';
+                break;
+            case 'toggle-weekly':
+                viewName = 'week';
+                break;
+            case 'toggle-monthly':
+                options.month.visibleWeeksCount = 0;
+                viewName = 'month';
+                break;
+            default:
+                break;
+        }
+
+        cal.setOptions(options, true);
+        cal.changeView(viewName, true);
+
+        setRenderRangeText();
+        setSchedules();
+    }
+
     function onClickNavi(e) {
         var action = getDataAction(e.target);
 
@@ -620,13 +650,13 @@ function hexToRGBA(hex) {
 
     function setEventListener() {
         $('#menu-navi').on('click', onClickNavi);
-        // $('.dropdown-menu a[role="menuitem"]').on('click', onClickMenu);
+        $('.dropdown-menu a[role="menuitem"]').on('click', onClickMenu);
         // $('#lnb-calendars').on('change', onChangeCalendars);
 
         $('#btn-save-schedule').on('click', onNewSchedule);
         $('#btn-new-schedule').on('click', createNewSchedule);
 
-        $('#dropdownMenu-calendars-list').on('click', onChangeNewScheduleCalendar);
+        // $('#dropdownMenu-calendars-list').on('click', onChangeNewScheduleCalendar);
 
         window.addEventListener('resize', resizeThrottled);
     }
