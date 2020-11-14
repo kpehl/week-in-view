@@ -20,6 +20,10 @@ Event.init(
         calendarId: {
             type: DataTypes.STRING,
             allowNull:false,
+            references: {
+                model: 'user',
+                key: 'id'
+            }
         },
         title: {
             type: DataTypes.STRING,
