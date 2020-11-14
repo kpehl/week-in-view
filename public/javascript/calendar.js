@@ -116,7 +116,17 @@ function renderCalendar(event) {
       start: '2020-11-13T17:30:00+09:00',
       end: '2020-11-13T18:31:00+09:00',
       isReadOnly: true    // schedule is read-only
-  }
+  },
+  {
+    id: '3',
+    calendarId: '1',
+    title: 'third schedule',
+    category: 'time',
+    dueDateClass: '',
+    start: '2020-11-14T17:30:00+09:00',
+    end: '2020-11-14T18:31:00+09:00',
+    isReadOnly: true    // schedule is read-only
+}
 ]);
  
 //  calendar.render();
