@@ -26,6 +26,11 @@ User.init(
             primaryKey: true,
             autoIncrement: true
         },
+        calendarId: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            defaultValue: 1
+        },
         // username column
         username: {
             type: DataTypes.STRING,

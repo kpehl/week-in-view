@@ -14,7 +14,7 @@ const sequelize = require('./config/connection');
 // Handlebars template engine for front-end
 const exphbs = require('express-handlebars');
 // Express session to handle session cookies
-const session = require('express-session')
+const session = require('express-session');
 // Sequelize store to save the session so the user can remain logged in
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 // Handlebars helpers
