@@ -2,12 +2,13 @@
 async function deleteTaskHandler(event) {
     event.preventDefault();
 
-    let target = event.target;
+    let taskItem = $(this).parent('.task-list-item');
+    console.log(taskItem)
 
     // get the task id from the clicked on task
-    // var taskID = $(this).siblings(".task-id");
-    // console.log(taskID)
-    console.log('button clicked')
+    var taskID = $(this).siblings('.task-id').text();
+    console.log('delete button clicked')
+    console.log(taskID)
 }
 
 let task_list = document.querySelector('.task-list-group')
