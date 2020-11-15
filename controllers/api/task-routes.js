@@ -29,10 +29,10 @@ router.get('/', (req, res) => {
     })
     .then(dbTaskData => res.json(dbTaskData))
     .catch(err => {
-        console.log(err)
-        res.status(500).json(err)
-    })
-})
+        console.log(err);
+        res.status(500).json(err);
+    });
+});
 
 // Get //api/tasks/:id  -- get a single task
 router.get('/:id', (req, res) => {
@@ -59,13 +59,13 @@ router.get('/:id', (req, res) => {
             res.status(404).json({ message: 'No task found with this id' });
             return;
         }
-        res.json(dbTaskData)
+        res.json(dbTaskData);
     })
     .catch(err => {
         console.log(err);
-        res.status(500).json(err)
-    })
-})
+        res.status(500).json(err);
+    });
+});
 
 // Create a new task
 router.post('/', (req, res) => {
@@ -76,9 +76,9 @@ router.post('/', (req, res) => {
     .then(dbTaskData => res.json(dbTaskData))
     .catch(err => {
         console.log(err);
-        res.status(500).json(err)
-    })
-})
+        res.status(500).json(err);
+    });
+});
 
 // Update a task
 router.put('/:id', (req, res) => {
@@ -94,13 +94,13 @@ router.put('/:id', (req, res) => {
             res.status(404).json({ message: 'No task found with this id' });
             return;
         }
-        res.json(dbTaskData)
+        res.json(dbTaskData);
     })
     .catch(err => {
         console.log(err);
-        res.status(500).json(err)
-    })
-})
+        res.status(500).json(err);
+    });
+});
 
 // Delete a task
 router.delete('/:id', (req, res) => {
@@ -114,13 +114,13 @@ router.delete('/:id', (req, res) => {
             res.status(404).json({ message: 'No task found with this id' });
             return;
         }
-        res.json(dbTaskData)
+        res.json(dbTaskData);
     })
     .catch(err => {
         console.log(err);
         res.status(500).json(err);
-    })
-})
+    });
+});
 
 
 module.exports = router;

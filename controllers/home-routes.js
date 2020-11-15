@@ -24,7 +24,7 @@ router.get('/:id', (req, res) => {
       include: [
           {
               model: Event,
-              attributes: ['id', 'title', 'text', 'created_at', 'year', 'month', 'day', 'hour', 'minute', 'duration']
+              attributes: ['id','calendarId','title','start','end','goingDuration','comingDuration','color','isVisible','bgColor','dragBgColor','borderColor','category','dueDateClass','customStyle','isPending','isFocused','isReadOnly','isPrivate','location','attendees','recurrenceRule','state']
           },
           {
               model: Task,
