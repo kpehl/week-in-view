@@ -6,8 +6,8 @@ const eventData = [{
     title: 'my schedule',
     category: 'time',
     dueDateClass: '',
-    start: '2020-11-13T12:30:00+09:00',
-    end: '2020-11-13T02:30:00+09:00'
+    start: '2020-11-14T19:30:00+09:00',
+    end: '2020-11-14T20:30:00+09:00'
 
     },
     {
