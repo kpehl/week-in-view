@@ -1,11 +1,11 @@
-<!--<div>
+<div>
     {{userData.username}}
     {{#each userData.events}}
     <h3>{{ title }}</h3>
     <p>{{ text }}</p>
     <p>{{hour}}:{{minute}}, {{month}}/{{day}}/{{year}}</p>
     {{/each}}
-</div> -->
+</div>
 
 <div class = "container-fluid">
     <div class = "row">
@@ -13,13 +13,26 @@
             {{> calendar }}
         </div>
 
-        <div class = "col-3">
+        <div class = "col-3 task-list-group">
             <h3>Tasks</h3>
-            <ul class = "task-list">
+            <h5>To Do</h5>
+            <ul class = "task-list-in-work">
                 {{#each userData.tasks as |task|}}
+                {{#unless task.status}}
                 <li>
                     {{> tasks}}
                 </li>
+                {{/unless}}
+                {{/each}}
+            </ul>
+            <h5>Complete</h5>
+            <ul class = "task-list-complete">
+                {{#each userData.tasks as |task|}}
+                {{#if task.status}}
+                <li>
+                    {{> tasks}}
+                </li>
+                {{/if}}
                 {{/each}}
             </ul>
             <form class = "new-task-form">
@@ -40,3 +53,4 @@
 
 
 <script src="/javascript/add-task.js"></script>
+<script src="/javascript/delete-task.js"></script>
