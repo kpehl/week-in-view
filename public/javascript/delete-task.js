@@ -9,6 +9,17 @@ async function deleteTaskHandler(event) {
     var taskID = $(this).siblings('.task-id').text();
     console.log('delete button clicked')
     console.log(taskID)
+
+    // use the delete task api to remove the task
+    const response = await fetch(`/api/tasks/${taskID}`, {
+        method: 'DELETE'
+    });
+    if (response.ok) {
+        document.location.reload();
+    } else {
+        alert(response.statusText)
+    }
+
 }
 
 let task_list = document.querySelector('.task-list-group')
