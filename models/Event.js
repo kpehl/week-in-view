@@ -32,12 +32,11 @@ Event.init(
                 notEmpty: true
             }
         },
-        body: {
-            type: DataTypes.STRING,
+        isAllDay: {
+            type: DataTypes.BOOLEAN,
             allowNull: false,
-            validate: {
-                notEmpty: true
-            }
+            len: [1],
+            defaultValue: false
         },
         start:{
             type: DataTypes.STRING,
@@ -47,11 +46,58 @@ Event.init(
             type: DataTypes.STRING,
             allowNull: false
         },
-        isAllDay: {
+        goingDuration:{
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            defaultValue: 30,
+            validate: {
+                len: [1]
+            }
+        },
+        comingDuration: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            defaultValue: 30,
+            validate: {
+                len: [1]
+            }
+        },
+        color: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            defaultValue: "#ffffff",
+            validate: {
+                len: [3]
+            }
+        },
+        isVisible: {
             type: DataTypes.BOOLEAN,
             allowNull: false,
-            len: [1],
-            defaultValue: false
+            defaultValue: true
+        },
+        bgColor:{
+            type: DataTypes.STRING,
+            allowNull: false,
+            defaultValue: "#69BB2D",
+            validate: {
+                len: [3]
+            }
+        },
+        dragBgColor:{
+            type: DataTypes.STRING,
+            allowNull: false,
+            defaultValue: "#69BB2D",
+            validate: {
+                len: [3]
+            }
+        },
+        borderColor:{
+            type: DataTypes.STRING,
+            allowNull: false,
+            defaultValue: "#69BB2D",
+            validate: {
+                len: [3]
+            }
         },
         category:{
             type: DataTypes.STRING,
@@ -64,25 +110,50 @@ Event.init(
                 },
             }
         },
+        dueDateClass: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            defaultValue: ""
+        },
+        customStyle:{
+            type: DataTypes.STRING,
+            allowNull: false,
+            defaultValue: "cursor: default;"
+        },
+        isPending:{
+            type: DataTypes.BOOLEAN,
+            allowNull: false,
+            defaultValue: true
+        },
+        isFocused:{
+            type: DataTypes.BOOLEAN,
+            allowNull: false,
+            defaultValue: true
+        },
+        isReadOnly:{
+            type: DataTypes.BOOLEAN,
+            allowNull: false,
+            defaultValue: true
+        },
+        isPrivate:{
+            type: DataTypes.BOOLEAN,
+            allowNull: false,
+            defaultValue: true
+        },
         location:{
             type: DataTypes.STRING,
             allowNull: false,
             defaultValue: 'Home'
         },
-        isReadOnly: {
-            type: DataTypes.BOOLEAN,
-            allowNull: false,
-            defaultValue: false
-        },
-        color: {
+        attendees:{
             type: DataTypes.STRING,
             allowNull: false,
-            defaultValue: 'Black'
+            defaultValue: ""
         },
-        bgColor: {
+        recurrenceRule:{
             type: DataTypes.STRING,
             allowNull: false,
-            defaultValue: 'Green'
+            defaultValue: ""
         },
         state: {
             type: DataTypes.STRING,
