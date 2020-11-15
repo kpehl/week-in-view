@@ -4,8 +4,6 @@
 // use Model and Datatype from sequelize
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
-// use bcrypt for password hashing
-const bcrypt = require('bcrypt');
 
 // Create the event model
 class Event extends Model {}
@@ -19,8 +17,9 @@ Event.init(
             primaryKey: true,
             autoIncrement: true
         },
-        user_id: {
-            type: DataTypes.INTEGER,
+        calendarId: {
+            type: DataTypes.STRING,
+            allowNull:false,
             references: {
                 model: 'user',
                 key: 'id'
@@ -33,42 +32,72 @@ Event.init(
                 notEmpty: true
             }
         },
-        text: {
+        body: {
             type: DataTypes.STRING,
             allowNull: false,
             validate: {
                 notEmpty: true
             }
         },
-        year:{
-            type: DataTypes.INTEGER,
-            allowNull: false,
-            len: [4]
+        start:{
+            type: DataTypes.STRING,
+            allowNull: false
         },
-        month:{
-            type: DataTypes.INTEGER,
+        end:{
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        isAllDay: {
+            type: DataTypes.BOOLEAN,
             allowNull: false,
             len: [1]
         },
-        day: {
-            type: DataTypes.INTEGER,
+        category:{
+            type: DataTypes.STRING,
             allowNull: false,
-            len: [1]
+            defaultValue: 'time',
+            validate: {
+                isIn: {
+                    args: [['milestone', 'task', 'allday', 'time']],
+                    msg: 'category must be milestone, task, allday or time',
+                },
+            }
         },
-        hour:{
-            type: DataTypes.INTEGER,
+        location:{
+            type: DataTypes.STRING,
             allowNull: false,
-            len: [1,2]
-        },
-        minute:{
-            type: DataTypes.INTEGER,
-            allowNull: false,
-            len: [4]
+            defaultValue: 'Home'
         },
         duration: {
             type: DataTypes.INTEGER,
             allowNull: false,
             len: [1,2]
+        },
+        isReadOnly: {
+            type: DataTypes.BOOLEAN,
+            allowNull: false,
+            defaultValue: false
+        },
+        color: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            defaultValue: 'Black'
+        },
+        bgColor: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            defaultValue: 'Green'
+        },
+        state: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            defaultValue: 'busy',
+            validate: {
+                isIn: {
+                    args: [['busy','free']],
+                    msg: 'Must be busy or free',
+                }
+            }
         }
     },
     {
@@ -78,6 +107,6 @@ Event.init(
         underscored: true,
         modelName: 'event'
     }
-)
+);
 
 module.exports = Event;
