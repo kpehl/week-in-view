@@ -18,7 +18,7 @@ Event.init(
             autoIncrement: true
         },
         calendarId: {
-            type: DataTypes.STRING,
+            type: DataTypes.INTEGER,
             allowNull:false,
             references: {
                 model: 'user',
@@ -50,7 +50,8 @@ Event.init(
         isAllDay: {
             type: DataTypes.BOOLEAN,
             allowNull: false,
-            len: [1]
+            len: [1],
+            defaultValue: false
         },
         category:{
             type: DataTypes.STRING,
@@ -67,11 +68,6 @@ Event.init(
             type: DataTypes.STRING,
             allowNull: false,
             defaultValue: 'Home'
-        },
-        duration: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-            len: [1,2]
         },
         isReadOnly: {
             type: DataTypes.BOOLEAN,
