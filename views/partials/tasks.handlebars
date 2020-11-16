@@ -1,5 +1,8 @@
 <p class = "task-list-item">
-    <span hidden class = "task-id">{{id}}</span>{{ text }} {{ status }}
+    <span hidden class = "task-id">{{id}}</span>
+    <i class="fas fa-check-square float-left text-success status-btn"></i>
+    {{ text }} 
+    <span hidden class = "task-status">{{ status }}</span>
     <i class='fas fa-trash-alt float-right text-danger delete-btn'></i>
 
 </p>

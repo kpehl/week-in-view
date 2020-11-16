@@ -10,6 +10,16 @@ async function updateTaskStatusHandler(event) {
     console.log('update button clicked')
     console.log(taskID)
 
+    // get the status from the clicked on task
+    var status = $(this).siblings('.task-status').text();
+    console.log(status)
+
+    // toggle the status of the task
+    if (status == 'true') {status = false}
+    else {status = true}
+    console.log(status)
+
+
     // use the update task api to update the task status
     const response = await fetch(`/api/tasks/${taskID}`, {
         method: 'PUT',
@@ -28,7 +38,6 @@ async function updateTaskStatusHandler(event) {
 
 }
 
-let task_list = document.querySelector('.task-list-group')
 let statusBtns = document.querySelectorAll('.status-btn')
 statusBtns.forEach(function (i) {
     i.addEventListener('click', updateTaskStatusHandler)
