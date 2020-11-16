@@ -22,15 +22,14 @@ router.get('/', (req, res) => {
       },
       // include the tasks and events for the user
       include: [
-          {
-              model: Event,
-              attributes: ['id', 'calendarId', 'title', 'body', 'start', 'end', 'isAllDay', 'category', 'location', 'isReadOnly', 'color', 'bgColor', 'state']
-          },
-          {
-              model: Task,
-              attributes: ['id', 'text', 'status'],
-              group: 'status'
-          }
+        {
+          model: Event,
+          attributes: ['id','calendarId','title','start','end','goingDuration','comingDuration','color','isVisible','bgColor','dragBgColor','borderColor','category','dueDateClass','customStyle','isPending','isFocused','isReadOnly','isPrivate','location','attendees','recurrenceRule','state']
+        },
+        {
+            model: Task,
+            attributes: ['id', 'text', 'status']
+        }
       ]
     })
       .then(dbUserData => {
