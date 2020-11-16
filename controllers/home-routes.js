@@ -4,13 +4,13 @@ const sequelize = require('../config/connection');
 // User, Task, Event models
 const { User, Task, Event} = require('../models');
 
-router.get('/', (req, res) => {
+// router.get('/', (req, res) => {
     
-  res.render('homepage', { 'TEST': "This is test" });
-});
+//   res.render('homepage', { 'TEST': "This is test" });
+// });
 
 
-router.get('/:id', (req, res) => {
+router.get('/', (req, res) => {
     // Acess the User model and run the findOne() method to get a single user based on parameters
     User.findOne({
       // when the data is sent back, exclude the password property
@@ -18,10 +18,11 @@ router.get('/:id', (req, res) => {
       where: {
         // use id as the parameter for the request
         // **CHANGE TO SESSION ID WHEN ESTABLISHED**
-        id: req.params.id
+        id: 1
       },
       // include the tasks and events for the user
       include: [
+
           {
               model: Event,
               attributes: ['id','calendarId','title','start','end','goingDuration','comingDuration','color','isVisible','bgColor','dragBgColor','borderColor','category','dueDateClass','customStyle','isPending','isFocused','isReadOnly','isPrivate','location','attendees','recurrenceRule','state']

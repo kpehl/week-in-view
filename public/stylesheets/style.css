@@ -17,3 +17,15 @@ header, footer {
     margin: 0;
     padding: 0;
 }
+
+.task-list-in-work li {
+    cursor: pointer;
+    background-color: lightgoldenrodyellow;
+    list-style-type: none;
+}
+
+.task-list-complete li {
+    cursor: pointer;
+    background-color: lightsteelblue;
+    list-style-type: none;
+}
