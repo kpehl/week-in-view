@@ -74,7 +74,7 @@ router.get('/home/', (req, res) => {
         }
         // otherwise, return the data for the requested user and render the homepage template
         const userData = dbUserData.get({ plain: true });
-        console.log(userData.events);
+        // console.log(userData.events);
         res.render('homepage', { userData });
       })
       .catch(err => {
