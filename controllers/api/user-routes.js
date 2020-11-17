@@ -31,6 +31,13 @@ router.get("/", (req, res) => {
     });
 });
 
+router.post("/login", passport.authenticate('local', {failureRedirect: '/login', successRedirect: '/home'}));
+
+router.get("/logout", (req, res, next) => {
+  req.logout();
+  res.redirect("/");
+});
+
 // GET /api/users/1 -- get a single user by id
 router.get("/:id", (req, res) => {
   // Acess the User model and run the findOne() method to get a single user based on parameters
@@ -99,59 +106,6 @@ router.post("/", (req, res) => {
       console.log(err);
       res.status(500).json(err);
     });
-});
-
-// POST /api/users/login -- login route for a user
-// router.post("/login", (req, res) => {
-//   // findOne method by email to look for an existing user in the database with the email address entered
-//   // expects {email: 'lernantino@gmail.com', password: 'password1234'}
-//   User.findOne({
-//     where: {
-//       email: req.body.email,
-//     },
-//   }).then((dbUserData) => {
-//     // if the email is not found, return an error
-//     if (!dbUserData) {
-//       res.status(400).json({ message: "No user with that email address!" });
-//       return;
-//     }
-//     // Otherwise, verify the user.
-//     // call the instance method as defined in the User model
-//     const validPassword = dbUserData.checkPassword(req.body.password);
-//     // if the password is invalid (method returns false), return an error
-//     if (!validPassword) {
-//       res.status(400).json({ message: "Incorrect password!" });
-//       return;
-//     }
-//     // otherwise, save the session, and return the user object and a success message
-//     // req.session.save(() => {
-//     //   // declare session variables
-//     //   req.session.user_id = dbUserData.id;
-//     //   req.session.username = dbUserData.username;
-//     //   req.session.loggedIn = true;
-
-//     res.json({ user: dbUserData, message: "You are now logged in!" });
-//     // });
-//   });
-// });
-router.post("/login", passport.authenticate('local', {failureRedirect: '/login', successRedirect: '/home'}));
-
-// POST /api/users/logout -- log out an existing user
-// router.post("/logout", (req, res) => {
-//   if (req.session.loggedIn) {
-//     req.session.destroy(() => {
-//       // 204 status is that a request has succeeded, but client does not need to go to a different page
-//       // (200 indicates success and that a newly updated page should be loaded, 201 is for a resource being created)
-//       res.status(204).end();
-//     });
-//   } else {
-//     // if there is no session, then the logout request will send back a no resource found status
-//     res.status(404).end();
-//   }
-// });
-router.get("/logout", (req, res, next) => {
-  req.logout();
-  res.redirect("/");
 });
 
 // PUT /api/users/1 -- update an existing user

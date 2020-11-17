@@ -17,7 +17,7 @@ async function loginFormHandler(event) {
             }),
             headers: {'Content-Type': 'application/json'}
         });
-        // when the fetch promise is fufilled, check the response status; if the response is good, load the dashboard; if there is an error, alert with the status
+        // when the fetch promise is fufilled, check the response status; if the response is good, load the homepage; if there is an error, alert with the status
         if (response.ok) {
             document.location.replace('/home');
         } else {
