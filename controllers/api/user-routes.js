@@ -134,7 +134,7 @@ router.post("/", (req, res) => {
 //     // });
 //   });
 // });
-router.post("/login", passport.authenticate('local', {failureRedirect: '/', successRedirect: '/'}));
+router.post("/login", passport.authenticate('local', {failureRedirect: '/login', successRedirect: '/home'}));
 
 // POST /api/users/logout -- log out an existing user
 // router.post("/logout", (req, res) => {
@@ -151,7 +151,7 @@ router.post("/login", passport.authenticate('local', {failureRedirect: '/', succ
 // });
 router.get("/logout", (req, res, next) => {
   req.logout();
-  res.redirect("/welcome");
+  res.redirect("/");
 });
 
 // PUT /api/users/1 -- update an existing user

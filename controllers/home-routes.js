@@ -38,6 +38,11 @@ router.get('/', (req,res) => {
 
 // Render the user homepage
 router.get('/home/', (req, res) => {
+    // if no user is logged in, reroute to the welcome page
+    if(!req.user) {
+      res.redirect('/');
+      return;
+    }
     // Acess the User model and run the findOne() method to get a single user based on parameters
     User.findOne({
       // when the data is sent back, exclude the password property
