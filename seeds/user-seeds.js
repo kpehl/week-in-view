@@ -1,26 +1,34 @@
 const { User } = require('../models');
-const bcrypt = require('bcrypt');
+// const bcrypt = require('bcrypt');
 const password = 'password';
-const hash = bcrypt.hashSync(password, 10);
+// const hash = bcrypt.hashSync(password, 10);
+
+const genPassword = require('../lib/passwordUtils').genPassword;
+const saltHash = genPassword(password);  
+const salt = saltHash.salt;
+const hash = saltHash.hash;
 
 const userData = [
     {
         username: 'test',
-        calendarId: 1,
+        id: 1,
         email:'test@gmail.com',
-        password: hash
+        hash: hash,
+        salt: salt
     },
     {
         username: 'Dude',
-        calendarId: 2,
+        id: 2,
         email: 'dude@gmail.com',
-        password: hash
+        hash: hash,
+        salt: salt
     },
     {
         username: 'Groovy',
-        calendarId: 3,
+        id: 3,
         email: 'groovy@gmail.com',
-        password: hash
+        hash: hash,
+        salt: salt
     }
 ];
 

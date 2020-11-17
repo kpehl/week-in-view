@@ -18,7 +18,8 @@ router.get('/', (req, res) => {
       where: {
         // use id as the parameter for the request
         // **CHANGE TO SESSION ID WHEN ESTABLISHED**
-        id: 1
+        // id: 1
+        id: req.user.id
       },
       // include the tasks and events for the user
       include: [
