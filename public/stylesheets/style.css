@@ -8,6 +8,41 @@ body, html {
     margin: 0;
 }
 
+a {
+    text-decoration: none;
+    color: #225ca3;
+    font-weight: bold;
+    transition: color .1s;
+}
+  
+a:hover {
+    color: #3486eb;
+}
+
+nav {
+    padding: 1.2rem;
+    text-align: right;
+    white-space: pre;
+}
+
+.btn-no-style {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    text-decoration: none;
+    color: #225ca3;
+    font-size: 100%;
+    font-weight: bold;
+    transition: color .1s;
+    margin-left: 16px;
+}
+  
+.btn-no-style:hover {
+    background: none;
+    color: #3486eb;
+}
+
 #calendar {
     height: 40%;
 }
@@ -19,13 +54,22 @@ header, footer {
 }
 
 .task-list-in-work li {
-    cursor: pointer;
+    /* cursor: pointer; */
     background-color: lightgoldenrodyellow;
     list-style-type: none;
+    border: 1px solid black;
+    text-align: center;
 }
 
 .task-list-complete li {
-    cursor: pointer;
+    /* cursor: pointer; */
     background-color: lightsteelblue;
     list-style-type: none;
+    border: 1px solid black;
+    text-align: center;
+}
+
+.status-btn, .delete-btn {
+    cursor: pointer;
+    font-size: larger;
 }

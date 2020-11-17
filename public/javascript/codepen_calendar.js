@@ -302,17 +302,11 @@ async function GetMyEvents(){
       timegridDisplayTime: function (time) {
         return getPadStart(time.hour) + ":" + getPadStart(time.hour);
       },
-      // timegridCurrentTime: function(timezone) {
-      //     var templates = [];
-
-      //     if (timezone.dateDifference) {
-      //         templates.push('[' + timezone.dateDifferenceSign + timezone.dateDifference + ']<br>');
-      //     }
-
-      //     templates.push(moment(timezone.hourmarker).format('HH:mm a'));
-
-      //     return templates.join('');
-      // },
+      timegridCurrentTime: function(time) {
+          var templates = [];
+          templates.push(moment(time.hour).format('h:mm a'));
+          return templates.join('');
+      },
       popupIsAllDay: function () {
         return "All Day";
       },
@@ -688,7 +682,7 @@ async function GetMyEvents(){
     var viewName = cal.getViewName();
     var html = [];
     if (viewName === "day") {
-      html.push(moment(cal.getDate().getTime()).format("MMM YYYY DD"));
+      html.push(moment(cal.getDate().getTime()).format("DD MMM YYYY"));
     } else if (
       viewName === "month" &&
       (!options.month.visibleWeeksCount || options.month.visibleWeeksCount > 4)
@@ -696,10 +690,10 @@ async function GetMyEvents(){
       html.push(moment(cal.getDate().getTime()).format("MMM YYYY"));
     } else {
       html.push(
-        moment(cal.getDateRangeStart().getTime()).format("MMM YYYY DD")
+        moment(cal.getDateRangeStart().getTime()).format("DD MMM")
       );
-      html.push(" ~ ");
-      html.push(moment(cal.getDateRangeEnd().getTime()).format(" MMM DD"));
+      html.push(" - ");
+      html.push(moment(cal.getDateRangeEnd().getTime()).format(" DD MMM YYYY"));
     }
     renderRange.innerHTML = html.join("");
   }
