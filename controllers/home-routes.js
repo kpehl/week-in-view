@@ -9,8 +9,40 @@ const { User, Task, Event} = require('../models');
 //   res.render('homepage', { 'TEST': "This is test" });
 // });
 
+// Render the login page.  If the user is logged in, reroute to the homepage.
+router.get('/login', (req, res) => {
+  if(req.user) {
+    res.redirect('/home/');
+    return;
+  }
+  res.render('login');
+});
 
-router.get('/', (req, res) => {
+// Render the sign up page.  If the user is logged in, reroute to the homepage.
+router.get('/signup', (req, res) => {
+  if(req.user) {
+    res.redirect('/home/');
+    return;
+  }
+  res.render('signup');
+});
+
+// Render a welcome page.  If the user is logged in, reroute to the homepage.
+router.get('/', (req,res) => {
+  if(req.user) {
+    res.redirect('/home/');
+    return;
+  }
+  res.render('welcome');
+})
+
+// Render the user homepage
+router.get('/home/', (req, res) => {
+    // if no user is logged in, reroute to the welcome page
+    if(!req.user) {
+      res.redirect('/');
+      return;
+    }
     // Acess the User model and run the findOne() method to get a single user based on parameters
     User.findOne({
       // when the data is sent back, exclude the password property
@@ -18,7 +50,8 @@ router.get('/', (req, res) => {
       where: {
         // use id as the parameter for the request
         // **CHANGE TO SESSION ID WHEN ESTABLISHED**
-        id: 1
+        // id: 1
+        id: req.user.id
       },
       // include the tasks and events for the user
       include: [

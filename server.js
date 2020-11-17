@@ -19,21 +19,11 @@ const session = require('express-session');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 // Handlebars helpers
 const helpers = require('./utils/helpers');
+// Passport package for authentication, using application specific username and password
+const passport = require('passport');
 
 // Initialize handlebars for the html templates, using the custom helpers
 const hbs = exphbs.create({ helpers });
-
-// Initialize session with options per best practices.  
-//The secret is defined in the .env file so it is kept secure, along with the mysql login information used in config/connection
-const sess = {
-  secret: process.env.SESSION_SECRET,
-  cookie: {},
-  resave: false,
-  saveUninitialized: true,
-  store: new SequelizeStore({
-    db: sequelize
-  })
-};
 
 // Initialize the server
 const app = express();
@@ -51,8 +41,32 @@ app.set('view engine', 'handlebars');
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// Initialize session with options per best practices.  
+//The secret is defined in the .env file so it is kept secure
+const sess = {
+  secret: process.env.SESSION_SECRET,
+  resave: false,
+  saveUninitialized: true,
+  store: new SequelizeStore({
+    db: sequelize
+  }),
+  cookie: {maxAge: 1000*60*60*24}  // one day max age
+};
+
 // Tell the app to use Express Session for the session handling
 app.use(session(sess));
+
+// Import the Passport config module, and initialize passport and the session
+require('./config/passport');
+app.use(passport.initialize());
+app.use(passport.session());
+
+// Make the session values available
+app.use((req, res, next) => {
+  console.log(req.session);
+  console.log(req.user);
+  next();
+});
 
 // Give the server the path to the routes
 app.use(routes);
