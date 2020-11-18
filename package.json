@@ -1,0 +1,46 @@
+{
+  "name": "week-in-view-draft",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "mysql": "mysql -u root -p",
+    "start": "node server.js",
+    "watch": "nodemon server.js",
+    "seed": "node seeds/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kpehl/week-in-view-draft.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kpehl/week-in-view-draft/issues"
+  },
+  "homepage": "https://github.com/kpehl/week-in-view-draft#readme",
+  "dependencies": {
+    "bcrypt": "^5.0.0",
+    "browserify": "^17.0.0",
+    "connect-session-sequelize": "^7.0.4",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-handlebars": "^5.2.0",
+    "express-session": "^1.17.1",
+    "moment": "^2.29.1",
+    "mysql2": "^2.2.5",
+    "nodemon": "^2.0.6",
+    "passport": "^0.4.1",
+    "passport-local": "^1.0.0",
+    "sequelize": "^6.3.5",
+    "tui-calendar": "^1.12.14",
+    "tui-code-snippet": "^2.3.2",
+    "tui-date-picker": "^4.1.0",
+    "tui-time-picker": "^2.0.3"
+  },
+  "devDependencies": {
+    "eslint": "^7.13.0"
+  }
+}

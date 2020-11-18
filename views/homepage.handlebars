@@ -1,0 +1,58 @@
+<div>
+    <h2>Welcome {{userData.username}}!</h2>
+    <span hidden id="user-id">{{userData.id}}</span>
+    {{!-- {{#each userData.events}}
+    <h3>{{ title }}</h3>
+    <p>{{ text }}</p>
+    <p>{{hour}}:{{minute}}, {{month}}/{{day}}/{{year}}</p>
+    {{/each}} --}}
+</div>
+
+<div class = "container-fluid">
+    <div class = "row">
+        <div class = "col-9">
+            {{> calendar }}
+        </div>
+
+        <div class = "col-3 task-list-group">
+            <h3>Tasks</h3>
+            <h5>To Do</h5>
+            <ul class = "task-list-in-work">
+                {{#each userData.tasks as |task|}}
+                {{#unless task.status}}
+                <li>
+                    {{> tasks}}
+                </li>
+                {{/unless}}
+                {{/each}}
+            </ul>
+            <h5>Complete</h5>
+            <ul class = "task-list-complete">
+                {{#each userData.tasks as |task|}}
+                {{#if task.status}}
+                <li>
+                    {{> tasks}}
+                </li>
+                {{/if}}
+                {{/each}}
+            </ul>
+            <form class = "new-task-form">
+                <div>
+                    <input name = "task-text" />
+                </div>
+                <div>
+                    <button type="submit">Add Task</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+{{> weather }}
+
+
+<script src="/javascript/add-task.js"></script>
+<script src="/javascript/delete-task.js"></script>
+<script src="/javascript/update-task.js"></script>
