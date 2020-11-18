@@ -2,7 +2,7 @@
 // https://github.com/kpehl/weather-dashboard
 // A variable for the Open Weather API key
 var apiKey = '86a0171fe8b8a02fbb9273530ba556fd'
-//process.env.WEATHER_API_KEY;
+//  var apiKey = process.env.WEATHER_API_KEY;
 
 // An element for the form
 var cityFormEl = document.querySelector("#city-form");
@@ -56,9 +56,9 @@ var loadSavedSearches = function() {
         searchEl = addSavedSearchButton(savedSearchItem);
         savedSearchesContainerEl.appendChild(searchEl)
         });
-    // if the DOM list is longer than 10, remove the last (oldest) value
+    // if the DOM list is longer than 3, remove the last (oldest) value
     var savedSearchesCount = savedSearchesContainerEl.childElementCount;
-    if (savedSearchesCount > 10) {
+    if (savedSearchesCount > 3) {
         savedSearchesContainerEl.removeChild(savedSearchesContainerEl.lastChild);
     }
 };
@@ -82,8 +82,8 @@ var addSavedSearch = function(city) {
     });
     // add the new search to the beginning of the array
     savedSearchesArr.splice(0,0,city);
-    // if the saved searches array is longer than 10, pop off the last (oldest) value
-    if (savedSearchesArr.length > 10) {
+    // if the saved searches array is longer than 3, pop off the last (oldest) value
+    if (savedSearchesArr.length > 3) {
         savedSearchesArr.pop();
     }
     // save the array to local storage
@@ -226,20 +226,20 @@ var displayCurrentWeather = function(weatherData, searchTerm) {
     // round the temperature to one decimal place
     var currentTemp = currentTemp.toFixed(1);
     // create the temperature text
-    currentTempEl.textContent = "Temperature: " + currentTemp + " °F";
+    currentTempEl.textContent = "Current Temperature: " + currentTemp + " °F";
     // append the text to the current weather container
     currentWeatherEl.appendChild(currentTempEl);
 
     // create an element for the humidity
     var currentHumidityEl = document.createElement("p");
     var currentHumidity = weatherData.main.humidity;
-    currentHumidityEl.textContent = "Humidity: " + currentHumidity + "%";
+    currentHumidityEl.textContent = "Current Humidity: " + currentHumidity + "%";
     currentWeatherEl.appendChild(currentHumidityEl);
     
     // create an element for the wind speed
     var currentWindEl = document.createElement("p");
     var currentWind = weatherData.wind.speed;
-    currentWindEl.textContent = "Wind Speed: " + currentWind + " MPH";
+    currentWindEl.textContent = "Current Wind Speed: " + currentWind + " MPH";
     currentWeatherEl.appendChild(currentWindEl);
 
     // append the container to the DOM
@@ -328,7 +328,7 @@ var displayForecast = function(data) {
     forecastContainerTitleEl.textContent = "5-Day Forecast:";
     forecastContainerEl.appendChild(forecastContainerTitleEl);
     // loop over the daily data to get the information for each card, 
-    // starting with the second entry in the array, i.e. tomorrow, and going for 5 days
+    // starting with the first entry in the array, today, and going for 5 days
     var forecastDate = [];
     var dailyMaxTemp = [];
     var dailyMaxHumidity = [];
@@ -336,15 +336,14 @@ var displayForecast = function(data) {
     var dailyIconCodeText = [];
     var dailyWeatherConditionCode = [];
     var cardElementName = [];
-    for (var i = 1; i < 6; i++) {
-        var j = i-1;
-        forecastDate[j] = moment.unix(data.daily[i].dt).format("M/D/YYYY");
-        dailyMaxTemp[j] = (data.daily[i].temp.max);
-        dailyMaxHumidity[j] = data.daily[i].humidity;
-        dailyIconCode[j] = data.daily[i].weather[0].icon;
-        dailyIconCodeText[j] = data.daily[i].weather[0].description;
-        dailyWeatherConditionCode[j] = data.daily[i].weather[0].id;
-        cardElementName[j] = "forecastCard" + j;
+    for (var i = 0; i < 5; i++) {
+        forecastDate[i] = moment.unix(data.daily[i].dt).format("M/D/YYYY");
+        dailyMaxTemp[i] = (data.daily[i].temp.max).toFixed(1);
+        dailyMaxHumidity[i] = data.daily[i].humidity;
+        dailyIconCode[i] = data.daily[i].weather[0].icon;
+        dailyIconCodeText[i] = data.daily[i].weather[0].description;
+        dailyWeatherConditionCode[i] = data.daily[i].weather[0].id;
+        cardElementName[i] = "forecastCard" + i;
     }
 
     // create the forecast cards
