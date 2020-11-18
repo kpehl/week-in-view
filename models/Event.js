@@ -49,7 +49,7 @@ Event.init(
         goingDuration:{
             type: DataTypes.INTEGER,
             allowNull: false,
-            defaultValue: 30,
+            defaultValue: 0,
             validate: {
                 len: [1]
             }
@@ -57,7 +57,7 @@ Event.init(
         comingDuration: {
             type: DataTypes.INTEGER,
             allowNull: false,
-            defaultValue: 30,
+            defaultValue: 0,
             validate: {
                 len: [1]
             }
@@ -123,22 +123,22 @@ Event.init(
         isPending:{
             type: DataTypes.BOOLEAN,
             allowNull: false,
-            defaultValue: true
+            defaultValue: false
         },
         isFocused:{
             type: DataTypes.BOOLEAN,
             allowNull: false,
-            defaultValue: true
+            defaultValue: false
         },
         isReadOnly:{
             type: DataTypes.BOOLEAN,
             allowNull: false,
-            defaultValue: true
+            defaultValue: false
         },
         isPrivate:{
             type: DataTypes.BOOLEAN,
             allowNull: false,
-            defaultValue: true
+            defaultValue: false
         },
         location:{
             type: DataTypes.STRING,
