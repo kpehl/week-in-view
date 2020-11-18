@@ -8,7 +8,7 @@ async function newTaskFormHandler(event) {
     const user_id = 1;
 
     // Use the add new task POST route to add the task to the database
-    const response = await fetch('api/tasks', {
+    const response = await fetch('/api/tasks', {
         method: 'POST',
         body: JSON.stringify({
             text,
