@@ -16,7 +16,6 @@
 * [Usage](##Usage)
 * [License](##License)
 * [Documentation](##Documentation)
-* [Contribute](##Contribute)
 * [Authors](##Authors)
 * [Questions](##Questions)
   
@@ -24,7 +23,7 @@
 
 Installation is a process of installing the dependencies required.
 Intialize node package manager and then run the following commands;  
-`npm install express express-handlebars express-session sequelize mysql2 bcrypt connect-session-sequelize moment passport passport-local tui-calendar tui-code-snippet tui-date-picker tui-time-picker`
+`npm install`
 
 
 ## Usage
@@ -53,7 +52,7 @@ Run the following commands:\
 
  MIT License
 
-Copyright (c) 2020 (ORM)E-commerce Back End
+Copyright (c) 2020 Week In View
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
