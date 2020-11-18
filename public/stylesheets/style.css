@@ -69,6 +69,12 @@ header, footer {
     text-align: center;
 }
 
+.fa, .fas {
+    font-size: larger;
+    font-weight: 900;
+    padding-top: 3%;
+}
+
 .status-btn, .delete-btn {
     cursor: pointer;
     font-size: larger;
