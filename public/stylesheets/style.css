@@ -53,6 +53,10 @@ header, footer {
     padding: 0;
 }
 
+.welcome {
+    text-align: center;
+}
+
 .task-list-in-work li {
     /* cursor: pointer; */
     background-color: lightgoldenrodyellow;
