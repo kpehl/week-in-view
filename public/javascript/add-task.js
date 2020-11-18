@@ -4,8 +4,8 @@ async function newTaskFormHandler(event) {
 
     // Get the task text from the form
     const text = document.querySelector('input[name="task-text"]').value.trim();
-    // TEMPORARY HARD CODE OF USER ID. // CHANGE THIS TO SESSION ID WHEN IT IS AVAILABLE
-    const user_id = 1;
+    // Get user id 
+    const user_id = document.querySelector('#user-id').textContent;
 
     // Use the add new task POST route to add the task to the database
     const response = await fetch('/api/tasks', {
