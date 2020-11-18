@@ -79,3 +79,46 @@ header, footer {
     cursor: pointer;
     font-size: larger;
 }
+
+/* Weather Icon Styling */
+
+.wi {
+    font-size: 3em;
+    padding: 2rem;
+}
+
+footer .wi {
+    font-size: 1em;
+    padding: 0.5rem;
+}
+
+
+/* Tooltip Styling */
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+    opacity: 1;
+}
+
+ .tooltiptext {
+    visibility: hidden;
+    width: 75px;
+    background-color: #f7f7f7;
+    color: #000;
+    text-align: center;
+    word-wrap: normal;
+    border-radius: 6px;
+    padding: 5px 0;
+  
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+    bottom: 45%;
+    left: 15%;
+    margin-left: 40px;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+}
