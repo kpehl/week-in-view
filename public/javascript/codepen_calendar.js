@@ -46,7 +46,8 @@ async function GetUser() {
         window.location.toString().split('/').length - 1
     ]; */
   //fetch(`/api/users/${id}`)
-const response = await fetch(`/api/users/1`)
+  const user_id = document.querySelector('#user-id').textContent;
+  const response = await fetch(`/api/users/${user_id}`)
     .then(function (response) {
       return response.json();
     })
@@ -58,10 +59,16 @@ const response = await fetch(`/api/users/1`)
 }
 
 async function GetMyEvents(){
-    const response = await fetch('/api/events')
+    const user_id = document.querySelector('#user-id').textContent;
+    const response = await fetch(`/api/users/${user_id}`)
         .then( response => {
             return response.json();
-        });
+        })
+        .then( function (json) {
+          const events = json.events;
+          console.log('GET MY EVENTS', events)
+          return events;
+        })
         return response;
 }
 
@@ -432,7 +439,8 @@ async function GetMyEvents(){
     beforeCreateSchedule: function (e) {
       // $("#create").fadeIn();
 
-      saveNewSchedule(e);
+      dbSaveNewSchedule(e);
+      //saveNewSchedule(e);
     },
     beforeUpdateSchedule: function (e) {
       var schedule = e.schedule;
@@ -440,20 +448,23 @@ async function GetMyEvents(){
 
       console.log("beforeUpdateSchedule", e);
 
-      cal.updateSchedule(schedule.id, schedule.calendarId, changes);
-      refreshScheduleVisibility();
+      dbUpdateSchedule(schedule.id, changes);
+
+      // cal.updateSchedule(schedule.id, schedule.calendarId, changes);
+      // refreshScheduleVisibility();
     },
     beforeDeleteSchedule: function (e) {
       console.log("beforeDeleteSchedule", e);
-      cal.deleteSchedule(e.schedule.id, e.schedule.calendarId);
+      // cal.deleteSchedule(e.schedule.id, e.schedule.calendarId);
+      dbDeleteSchedule(e.schedule.id)
     },
     afterRenderSchedule: function (e) {
       var schedule = e.schedule;
       var element = cal.getElement(schedule.id, schedule.calendarId);
-      console.log("afterRenderSchedule", element);
+      // console.log("afterRenderSchedule", element);
     },
     clickTimezonesCollapseBtn: function (timezonesCollapsed) {
-      console.log("timezonesCollapsed", timezonesCollapsed);
+      // console.log("timezonesCollapsed", timezonesCollapsed);
 
       if (timezonesCollapsed) {
         cal.setTheme({
@@ -656,6 +667,74 @@ async function GetMyEvents(){
 
     refreshScheduleVisibility();
   }
+
+  async function dbSaveNewSchedule(scheduleData) {
+    var calendar =
+      scheduleData.calendar || findCalendar(scheduleData.calendarId);
+    var calendarId = document.querySelector('#user-id').textContent;
+    var schedule = {
+      calendarId: calendarId,
+      title: scheduleData.title,
+      isAllDay: scheduleData.isAllDay,
+      start: (scheduleData.start).toDate(),
+      end: (scheduleData.end).toDate(),
+      category: "allday",
+      category: scheduleData.isAllDay ? "allday" : "time",
+      dueDateClass: "",
+      color: calendar.color,
+      bgColor: calendar.bgColor,
+      dragBgColor: calendar.bgColor,
+      borderColor: calendar.borderColor,
+      location: scheduleData.location,
+      raw: {
+        class: scheduleData.raw["class"],
+      },
+      state: scheduleData.state,
+    };
+    const response = await fetch('/api/events', {
+      method: "POST",
+      body: JSON.stringify(schedule),
+      headers: { 'Content-Type': 'application/json' }
+    });
+    if (response.ok) {
+      document.location.replace('/');
+    } else {
+        alert(response.statusText)
+    }
+  };
+
+  async function dbUpdateSchedule(scheduleId, changes) {
+    var calendarId = document.querySelector('#user-id').textContent;
+    if(changes.start) {
+      changes.start = (changes.start).toDate();
+    }
+    if(changes.end) {
+      changes.end = (changes.end).toDate();
+    }
+    changes.calendarId = parseInt(calendarId)
+
+    const response = await fetch(`/api/events/${scheduleId}`, {
+      method: "PUT",
+      body: JSON.stringify(changes),
+      headers: { 'Content-Type': 'application/json' }
+    });
+    if (response.ok) {
+      document.location.replace('/');
+    } else {
+        alert(response.statusText)
+    }
+  };
+
+  async function dbDeleteSchedule(scheduleId) {
+    const response = await fetch(`/api/events/${scheduleId}`, {
+      method: "DELETE"
+    });
+    if (response.ok) {
+      document.location.replace('/');
+    } else {
+        alert(response.statusText)
+    }
+  };
 
   function refreshScheduleVisibility() {
     var calendarElements = Array.prototype.slice.call(
