@@ -42,7 +42,7 @@ Run the following commands:\
 
 #### Screenshot
 
-![Screenshot of the Application](week-in-view.png?raw=true "Screenshot of the Application")
+![Screenshot of the Application](media/week-in-view.png?raw=true "Screenshot of the Application")
 ### Link to the application running on Heroku: [Week In View](https://rocky-mountain-95430.herokuapp.com/home/)
 
 
