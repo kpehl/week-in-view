@@ -1,3 +1,29 @@
-<div>
+<div class = "container-fluid">
     <h3>5 Day Forecast</h3>
+    <div class = "row">
+        <!--Column with the search form and the local search history-->
+        <div class = "col-12 col-md-3 bg-white">
+            <div class = "card mx-auto width">
+                <h3 class = "card-header m-0">Search for a city:</h3>
+                <form id = "city-form" class = "card-body">
+                    <label class = "form-label sr-only" for = "city">City</label>
+                    <input name = "city" id = "city" type = "text" autofocus = "true" class = "form-input">
+                    <button type = "submit" class="btn btn-primary" aria-label="Search">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </form>
+            </div>
+                            
+            <div class = "btn-group-vertical btn-block mx-auto" id = "saved-searches"></div>
+
+        </div>
+        <!--Column to populate the weather data-->
+        <div class = "col-12 col-md-9">
+            <div id = "current-weather-container"></div>
+            <div id = "forecast-container"></div>
+        </div>
+    </div>
+
 </div>
+
+<script src="/javascript/weather.js"></script>
