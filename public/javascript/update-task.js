@@ -3,21 +3,16 @@ async function updateTaskStatusHandler(event) {
     event.preventDefault();
 
     let taskItem = $(this).parent('.task-list-item');
-    console.log(taskItem)
 
     // get the task id from the clicked on task
     var taskID = $(this).siblings('.task-id').text();
-    console.log('update button clicked')
-    console.log(taskID)
 
     // get the status from the clicked on task
     var status = $(this).siblings('.task-status').text();
-    console.log(status)
 
     // toggle the status of the task
-    if (status == 'true') {status = false}
-    else {status = true}
-    console.log(status)
+    if (status == 'true') {status = false;}
+    else {status = true;}
 
 
     // use the update task api to update the task status
@@ -33,12 +28,12 @@ async function updateTaskStatusHandler(event) {
     if (response.ok) {
         document.location.reload();
     } else {
-        alert(response.statusText)
+        alert(response.statusText);
     }
 
 }
 
-let statusBtns = document.querySelectorAll('.status-btn')
+let statusBtns = document.querySelectorAll('.status-btn');
 statusBtns.forEach(function (i) {
-    i.addEventListener('click', updateTaskStatusHandler)
-})
+    i.addEventListener('click', updateTaskStatusHandler);
+});

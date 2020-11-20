@@ -21,10 +21,10 @@ async function loginFormHandler(event) {
         if (response.ok) {
             document.location.replace('/home');
         } else {
-            let result = await response.json()
-            alert(result.message)
+            let result = await response.json();
+            alert(result.message);
         }
     }
 }
 
-document.querySelector('.login-form').addEventListener('submit', loginFormHandler);
+document.querySelector('#login-form').addEventListener('submit', loginFormHandler);

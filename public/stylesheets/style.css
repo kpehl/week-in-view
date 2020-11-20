@@ -1,129 +1,154 @@
-* {
-    box-sizing: border-box;
+:root {
+  --primary: #ccdad1;
+  --secondary: #dce9d5;
+  --tertiary: #788585;
+  --light-dark: #a1a0a1;
+  --dark: black;
+  --border-radius: 0.3rem;
 }
 
-body, html {
-    height: 100%;
-    padding: 0;
-    margin: 0;
+* {
+  box-sizing: border-box;
+}
+
+body,
+html {
+  height: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+h3 {
+    color: #fff;
 }
 
 a {
-    text-decoration: none;
-    color: #225ca3;
-    font-weight: bold;
-    transition: color .1s;
-}
-  
-a:hover {
-    color: #3486eb;
+  text-decoration: none;
+  color: #fff;
+  font-weight: bold;
+  transition: color 0.1s;
 }
 
-nav {
-    padding: 1.2rem;
-    text-align: right;
-    white-space: pre;
+a:hover {
+  color: #fff;
+  text-decoration: none;
+}
+
+.navbar-brand {
+    font-size: 2.5rem;
+}
+
+.card {
+    max-width: 30rem;
+    margin: 0 auto; /* Added */
+    float: none; /* Added */
+    margin-bottom: 50px; /* Added */
+    margin-top: 50px;
 }
 
 .btn-no-style {
-    background: none;
-    border: none;
-    padding: 0;
-    cursor: pointer;
-    text-decoration: none;
-    color: #225ca3;
-    font-size: 100%;
-    font-weight: bold;
-    transition: color .1s;
-    margin-left: 16px;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  text-decoration: none;
+  color: #225ca3;
+  font-size: 100%;
+  font-weight: bold;
+  transition: color 0.1s;
+  margin-left: 16px;
 }
-  
+
 .btn-no-style:hover {
-    background: none;
-    color: #3486eb;
+  background: none;
+  color: #3486eb;
 }
 
 #calendar {
-    height: 40%;
+  height: 40%;
 }
 
-header, footer {
-    background-color: lightgray;
-    margin: 0;
-    padding: 0;
+header,
+footer {
+  background-color: lightgray;
+  margin: 0;
+  padding: 0;
 }
-
-
+footer a {
+    color: var(--dark);
+}
 .welcome {
-    text-align: center;
+  margin: 50px;
+  text-align: center;
 }
 
 .task-list-in-work li {
-    /* cursor: pointer; */
-    background-color: lightgoldenrodyellow;
-    list-style-type: none;
-    border: 1px solid black;
-    text-align: center;
+  /* cursor: pointer; */
+  background-color: lightgoldenrodyellow;
+  list-style-type: none;
+  border: 1px solid var(--dark);
+  text-align: center;
 }
 
 .task-list-complete li {
-    /* cursor: pointer; */
-    background-color: lightsteelblue;
-    list-style-type: none;
-    border: 1px solid black;
-    text-align: center;
+  /* cursor: pointer; */
+  background-color: lightsteelblue;
+  list-style-type: none;
+  border: 1px solid black;
+  text-align: center;
 }
 
-.fa, .fas {
-    font-size: larger;
-    font-weight: 900;
-    padding-top: 3%;
+.fa,
+.fas {
+  font-size: larger;
+  font-weight: 900;
+  padding-top: 3%;
 }
 
-.status-btn, .delete-btn {
-    cursor: pointer;
-    font-size: larger;
+.status-btn,
+.delete-btn {
+  cursor: pointer;
+  font-size: larger;
 }
 
 /* Weather Icon Styling */
 
 .wi {
-    font-size: 3em;
-    padding: 2rem;
+  font-size: 3em;
+  padding: 2rem;
 }
 
 footer .wi {
-    font-size: 1em;
-    padding: 0.5rem;
+  font-size: 1em;
+  padding: 0.5rem;
 }
-
 
 /* Tooltip Styling */
 
 .tooltip {
-    position: relative;
-    display: inline-block;
-    opacity: 1;
+  position: relative;
+  display: inline-block;
+  opacity: 1;
 }
 
- .tooltiptext {
-    visibility: hidden;
-    width: 75px;
-    background-color: #f7f7f7;
-    color: #000;
-    text-align: center;
-    word-wrap: normal;
-    border-radius: 6px;
-    padding: 5px 0;
-  
-    /* Position the tooltip */
-    position: absolute;
-    z-index: 1;
-    bottom: 45%;
-    left: 15%;
-    margin-left: 40px;
+.tooltiptext {
+  visibility: hidden;
+  width: 75px;
+  background-color: #f7f7f7;
+  color: #000;
+  text-align: center;
+  word-wrap: normal;
+  border-radius: 6px;
+  padding: 5px 0;
+
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+  bottom: 45%;
+  left: 15%;
+  margin-left: 40px;
 }
 
 .tooltip:hover .tooltiptext {
-    visibility: visible;
+  visibility: visible;
 }
