@@ -38,13 +38,14 @@ a:hover {
     font-size: 2.5rem;
 }
 
-.card {
+.card-action {
     max-width: 30rem;
     margin: 0 auto; /* Added */
     float: none; /* Added */
     margin-bottom: 50px; /* Added */
     margin-top: 50px;
 }
+
 
 .btn-no-style {
   background: none;
