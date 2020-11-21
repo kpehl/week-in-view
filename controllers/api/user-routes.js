@@ -41,7 +41,6 @@ router.get("/logout", (req, res, next) => {
 // GET /api/users/1 -- get a single user by id
 router.get("/:id", (req, res) => {
   // Acess the User model and run the findOne() method to get a single user based on parameters
-  console.log("IN USER GET");
   User.findOne({
     // when the data is sent back, exclude the password property
     attributes: { exclude: ["password"] },

@@ -24,9 +24,9 @@ async function signupFormHandler(event) {
             alert('Account created! Visit the login page and log in now.');
             document.location.replace('/login');
         } else {
-            alert(response.statusText)
+            alert(response.statusText);
         }
     }
 }
 
-document.querySelector('.signup-form').addEventListener('submit', signupFormHandler);
+document.querySelector('#signup-form').addEventListener('submit', signupFormHandler);

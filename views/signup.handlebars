@@ -1,21 +1,29 @@
-<form class="signup-form">
-  <div>
-    <label for="username-signup">username:</label>
-    <input type="text" id="username-signup" />
-  </div>
-  <div>
-    <label for="email-signup">email:</label>
-    <input type="text" id="email-signup" />
-  </div>
-  <div>
-    <label for="password-signup">password:</label>
-    <input type="password" id="password-signup" />
-  </div>
-  <div>
-    <button type="submit">signup</button>
-  </div>
-</form>
 
-<a href="/login">need to log in instead?</a>
+
+<div class="card card-action">
+    <div class="card-header bg-info text-white">
+        <h3>Sign Up</h3>
+    </div>
+    <div class="card-body">
+        <form id="signup-form">
+            <div class="form-group">
+                <label for="username-signup">Username</label>
+                <input id="username-signup" type="text" autofocus="true" class="form-control"
+                    placeholder="Enter Username" />
+            </div>
+            <div class="form-group">
+                <label for="email-signup">Email</label>
+                <input type="text" id="email-signup" class="form-control" placeholder="Enter Email" />
+            </div>
+            <div class="form-group">
+                <label for="password-signup">Password</label>
+                <input id="password-signup" type="password" class="form-control" placeholder="Password" />
+            </div>
+
+            <button type="submit" class="btn text-light bg-info">Signup!</button>
+        </form>
+          <h4><a class="badge badge-primary" href="/login">Log in instead</a></h4>
+
+    </div>
 
 <script src="/javascript/signup.js"></script>

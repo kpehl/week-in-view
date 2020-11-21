@@ -1,7 +1,7 @@
 // From Kathleen Pehl's Weather Dashboard project
 // https://github.com/kpehl/weather-dashboard
 // A variable for the Open Weather API key
-var apiKey = '86a0171fe8b8a02fbb9273530ba556fd'
+var apiKey = '86a0171fe8b8a02fbb9273530ba556fd';
 //  var apiKey = process.env.WEATHER_API_KEY;
 
 // An element for the form
@@ -13,7 +13,7 @@ var currentWeatherContainerEl = document.querySelector("#current-weather-contain
 // create a container for the current weather
 var currentWeatherEl = document.createElement("div");
 currentWeatherEl.classList = "card align-left p-3";
-currentWeatherEl.id = "current-weather"
+currentWeatherEl.id = "current-weather";
 // create a container for the current weather header
 var currentWeatherHeader = document.createElement("div");
 currentWeatherHeader.classList = "header";
@@ -54,7 +54,7 @@ var loadSavedSearches = function() {
     }
     $.each(savedSearchesArr, function(index,savedSearchItem) {
         searchEl = addSavedSearchButton(savedSearchItem);
-        savedSearchesContainerEl.appendChild(searchEl)
+        savedSearchesContainerEl.appendChild(searchEl);
         });
     // if the DOM list is longer than 3, remove the last (oldest) value
     var savedSearchesCount = savedSearchesContainerEl.childElementCount;
@@ -167,17 +167,17 @@ var getCurrentWeather = function(city) {
                 var cityLon = data.lon;
 
                 // use another nested fetch to get the UVI data
-                var uviUrl = "https://api.openweathermap.org/data/2.5/uvi?lat=" + cityLat + "&lon=" + cityLon + "&APPID=86a0171fe8b8a02fbb9273530ba556fd"
+                var uviUrl = "https://api.openweathermap.org/data/2.5/uvi?lat=" + cityLat + "&lon=" + cityLon + "&APPID=86a0171fe8b8a02fbb9273530ba556fd";
                 return fetch(uviUrl);
-            })
+            });
         })
         .then(function(response) {
             return response.json().then(function(data) {
                 // display the current UV data on the card
                 displayCurrentUv(data);
-            })
-        })
-    })
+            });
+        });
+    });
     // .catch(function(error) {
     //     alert("Something went wrong - reloading")
     //     document.location.reload();
@@ -212,7 +212,7 @@ var displayCurrentWeather = function(weatherData, searchTerm) {
     cityLonEl = weatherData.coord.lon;
 
     // append the heading to the header div
-    currentWeatherHeader.appendChild(cityNameHeader)
+    currentWeatherHeader.appendChild(cityNameHeader);
     // append the image to the header div
     currentWeatherHeader.appendChild(altIconEl);
 
@@ -259,11 +259,11 @@ var displayCurrentUv = function(data) {
     // add a badge span with a color for Favorable (success), Moderate (warning), and Severe (danger)
     var uvSpan = document.createElement("span");
     if (currentUv > 7) {
-        uvSpan.classList = "badge badge-danger"
+        uvSpan.classList = "badge badge-danger";
     } else if (currentUv > 3) {
-        uvSpan.classList = "badge badge-warning"
+        uvSpan.classList = "badge badge-warning";
     } else {
-        uvSpan.classList = "badge badge-success"
+        uvSpan.classList = "badge badge-success";
     }
 
     // add the value of the UV index to the badge
@@ -281,16 +281,16 @@ var displayCurrentUv = function(data) {
 // A function to generate the icon image tag
 var getIcon = function(iconCode, iconCodeText) {
     // Create a URL for the weather icon provided by the weather data
-    var iconUrl = "https://openweathermap.org/img/wn/" + iconCode + "@2x.png"
+    var iconUrl = "https://openweathermap.org/img/wn/" + iconCode + "@2x.png";
     // Create an icon image element
-    var iconImgEl = document.createElement("img")
+    var iconImgEl = document.createElement("img");
     iconImgEl.setAttribute("src", iconUrl);
     iconImgEl.setAttribute("alt", iconCodeText);
     var tooltipSpan = document.createElement("span");
     tooltipSpan.classList = "tooltiptext";
     tooltipSpan.textContent = iconCodeText;
-    var iconEl = document.createElement("div")
-    iconEl.classList = "tooltip"
+    var iconEl = document.createElement("div");
+    iconEl.classList = "tooltip";
     iconEl.appendChild(iconImgEl);
     iconEl.appendChild(tooltipSpan);
     return(iconEl);
@@ -310,7 +310,7 @@ var getAltIcon = function(weatherConditionCode, iconCode, iconCodeText) {
     var tooltipSpan = document.createElement("span");
     tooltipSpan.classList = "tooltiptext";
     tooltipSpan.textContent = iconCodeText;
-    var altIconEl = document.createElement("div")
+    var altIconEl = document.createElement("div");
     altIconEl.classList = "tooltip";
     altIconEl.innerHTML = altIconImgEl;
     altIconEl.appendChild(tooltipSpan);
@@ -350,7 +350,7 @@ var displayForecast = function(data) {
     for (var i = 0; i < 5; i++) {
         // Create the card div and style it
         var forecastCardEl = document.createElement("div");
-        forecastCardEl.classList = ("card text-white bg-primary p-1")
+        forecastCardEl.classList = ("card text-white bg-primary p-1");
         forecastCardEl.id = cardElementName[i];
         // Create the card body div
         var cardBody = document.createElement("div");
@@ -358,7 +358,7 @@ var displayForecast = function(data) {
         // Create the card title with the date and append it
         var cardTitle = document.createElement("h5");
         cardTitle.classList = ("card-title pb-4 align-top");
-        cardTitle.textContent = forecastDate[i]
+        cardTitle.textContent = forecastDate[i];
         cardBody.appendChild(cardTitle);
 
         // Create the icon and append it
@@ -389,7 +389,7 @@ var displayForecast = function(data) {
 loadSavedSearches();
 
 // Event Listener for the Search Button
-cityFormEl.addEventListener("submit", formSubmitHandler)
+cityFormEl.addEventListener("submit", formSubmitHandler);
 
 // Event Listener for the Saved Search Buttons
-savedSearchesContainerEl.addEventListener("click", savedSearchesHandler)
+savedSearchesContainerEl.addEventListener("click", savedSearchesHandler);
