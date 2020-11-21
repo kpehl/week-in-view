@@ -143,7 +143,7 @@ Event.init(
         location:{
             type: DataTypes.STRING,
             allowNull: false,
-            defaultValue: 'Home'
+            defaultValue: ""
         },
         attendees:{
             type: DataTypes.STRING,
@@ -158,10 +158,10 @@ Event.init(
         state: {
             type: DataTypes.STRING,
             allowNull: false,
-            defaultValue: 'busy',
+            defaultValue: 'Busy',
             validate: {
                 isIn: {
-                    args: [['busy','free']],
+                    args: [['Busy','Free']],
                     msg: 'Must be busy or free',
                 }
             }
